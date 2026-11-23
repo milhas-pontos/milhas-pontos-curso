@@ -236,6 +236,7 @@
 		"nubank-ultravioleta": { cashback: "1,25", points: "2,2" },
 		"nubank-croma": { cashback: "0,8", points: "1,4" },
 		"santander-unique": { cashback: "1,20", points: "2,2" },
+		"revolut-ultra": { cashback: "0", points: "3" },
 	};
 
 	function applyCardPreset(calculator) {
@@ -272,6 +273,36 @@
 		setOutput(calculator, "points", formatNumber(points, 0));
 		setOutput(calculator, "spend-per-thousand", formatMoney(spendPerThousand));
 		setOutput(calculator, "cashback-on-thousand", formatMoney(cashbackOnThousand));
+	}
+
+	function calculateCardMiles(calculator) {
+		var purchase = value(calculator, "purchase");
+		var pointsRate = value(calculator, "points-rate");
+		var dollar = value(calculator, "dollar");
+		var feeRate = value(calculator, "fee-rate");
+		var programField = calculator.querySelector('[name="program"]');
+		var option =
+			programField && programField.selectedOptions
+				? programField.selectedOptions[0]
+				: null;
+		var reference = officialMileReference(option);
+		var note = calculator.querySelector("[data-reference-note]");
+		var fee = purchase >= 0 && feeRate >= 0 ? (purchase * feeRate) / 100 : NaN;
+		var points =
+			purchase >= 0 && pointsRate >= 0 && dollar > 0
+				? Math.round((purchase / dollar) * pointsRate)
+				: NaN;
+		var cpm = Number.isFinite(fee) && points > 0 ? (fee / points) * 1000 : NaN;
+
+		if (note) note.classList.toggle("is-blank", !Number.isFinite(reference));
+		setOutput(
+			calculator,
+			"reference",
+			Number.isFinite(reference) ? formatMoney(reference) : "—",
+		);
+		setOutput(calculator, "card-fee", formatMoney(fee));
+		setOutput(calculator, "card-points", formatNumber(points, 0));
+		setOutput(calculator, "card-cpm", formatMoney(cpm));
 	}
 
 	function calculatePurchase(calculator) {
@@ -995,7 +1026,9 @@
 								? calculateAccorStay
 								: type === "credit-card"
 									? calculateCreditCard
-									: calculateEmission;
+									: type === "card-miles"
+										? calculateCardMiles
+										: calculateEmission;
 
 		function onEdit(event) {
 			var field = event.target;

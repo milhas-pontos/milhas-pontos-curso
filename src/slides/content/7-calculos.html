@@ -341,13 +341,13 @@
     </div>
     <div class="title-section">
       <h1>Cartão de Crédito</h1>
-      <p>A lupa busca a PTAX de venda do dólar. O Nubank Ultravioleta preenche 1,25% de cashback e 2,2 pontos por dólar. O Nubank Croma preenche 0,8% e 1,4. O Santander Unique preenche 1,20% e 2,2. Sem cartão, informe esses campos.</p>
+      <p>A lupa busca a PTAX de venda do dólar. O Nubank Ultravioleta preenche 1,25% de cashback e 2,2 pontos por dólar. O Nubank Croma preenche 0,8% e 1,4. O Santander Unique preenche 1,20% e 2,2. O Revolut Ultra preenche 0% e 3. Sem cartão, informe esses campos.</p>
     </div>
   </div>
   <div class="slide-body">
     <div class="calculator" data-calculator="credit-card">
       <div class="calculator-fields">
-        <div class="calculator-field span-2"><label for="s6-card">Cartão</label><select class="calculator-input" id="s6-card" name="card"><option value="">Selecione</option><option value="nubank-ultravioleta">Nubank Ultravioleta</option><option value="nubank-croma">Nubank Croma</option><option value="santander-unique">Santander Unique</option></select></div>
+        <div class="calculator-field span-2"><label for="s6-card">Cartão</label><select class="calculator-input" id="s6-card" name="card"><option value="">Selecione</option><option value="nubank-ultravioleta">Nubank Ultravioleta</option><option value="nubank-croma">Nubank Croma</option><option value="santander-unique">Santander Unique</option><option value="revolut-ultra">Revolut Ultra</option></select></div>
       </div>
       <div class="calculator-fields">
         <div class="calculator-field"><label for="s6-purchase">Valor da compra (R$)</label><input class="calculator-input" id="s6-purchase" name="purchase" type="text" inputmode="decimal" data-mask="money" autocomplete="off"></div>
@@ -380,6 +380,61 @@
     <div class="alert-content">
       <h4>Não baixa o preço da compra</h4>
       <p>Cashback e pontos entram depois. Juros do cartão ficam de fora desta conta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div>
+    <div class="slide-header">
+      <span class="badge">Módulo 7 • Aula 7</span>
+      <span class="slide-num"></span>
+    </div>
+    <div class="title-section">
+      <h1>Cartão de Crédito (Gerar Milhas)</h1>
+      <p>O custo da compra é a taxa da maquininha. O CPM divide essa taxa pelos pontos gerados. O programa mostra o milheiro de referência.</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="calculator" data-calculator="card-miles">
+      <div class="calculator-fields cols-3">
+        <div class="calculator-field"><label for="s7-purchase">Valor da compra (R$)</label><input class="calculator-input" id="s7-purchase" name="purchase" type="text" inputmode="decimal" data-mask="money" autocomplete="off"></div>
+        <div class="calculator-field"><label for="s7-points">Pontos por dólar</label><input class="calculator-input" id="s7-points" name="points-rate" type="text" inputmode="decimal" data-mask="decimal" autocomplete="off"></div>
+        <div class="calculator-field"><label for="s7-dollar">Dólar (R$)</label>
+          <div class="fx-lookup">
+            <input class="calculator-input" id="s7-dollar" name="dollar" type="text" inputmode="decimal" data-mask="money" autocomplete="off">
+            <button type="button" class="fx-lookup-button" data-fx-lookup data-fx-currency="USD" aria-label="Buscar cotação do dólar">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16.5 20.5 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <p class="field-note fx-quote is-blank" data-fx-note></p>
+        </div>
+      </div>
+      <div class="calculator-fields cols-3">
+        <div class="calculator-field"><label for="s7-fee">Taxa maquininha (%)</label><div class="pct-input"><input class="calculator-input" id="s7-fee" name="fee-rate" type="text" inputmode="decimal" data-mask="decimal" autocomplete="off"><span class="pct-suffix" aria-hidden="true">%</span></div></div>
+        <div class="calculator-field"><label for="s7-program">Programa de pontos</label>
+          <select class="calculator-input" id="s7-program" name="program" data-program-source>
+            <option value="">Selecione</option>
+          </select>
+          <p class="field-note is-blank" data-reference-note>Milheiro de referência: <strong data-output="reference">—</strong></p>
+        </div>
+      </div>
+      <div class="calculator-results cols-3" aria-live="polite">
+        <div class="calculator-result"><span>Taxa da maquininha</span><output data-output="card-fee">—</output></div>
+        <div class="calculator-result"><span>Pontos gerados</span><output data-output="card-points">—</output></div>
+        <div class="calculator-result"><span>Valor do CPM</span><output data-output="card-cpm">—</output></div>
+      </div>
+    </div>
+    <div class="formula-box">
+      <div class="formula-label">Fórmula</div>
+      <div class="equation">taxa = compra × taxa ÷ 100. Pontos = compra ÷ dólar × pontos por dólar. CPM = taxa ÷ pontos × 1.000.</div>
+    </div>
+  </div>
+  <div class="alert-box info">
+    <div class="alert-icon">i</div>
+    <div class="alert-content">
+      <h4>Exemplo hipotético</h4>
+      <p>Compra de R$ 10.000, 3 pontos por dólar, dólar a R$ 5,00 e taxa de 1,5%. A taxa é R$ 150,00, os pontos são 6.000 e o CPM é R$ 25,00.</p>
     </div>
   </div>
 </section>

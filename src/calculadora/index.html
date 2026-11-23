@@ -37,6 +37,7 @@
         <a href="/calculadora/#credito-all-accor">ALL Accor</a>
         <a href="/calculadora/#all-accor-hospedagem">All Accor (Hospedagem)</a>
         <a href="/calculadora/#cartao-de-credito">Cartão de Crédito</a>
+        <a href="/calculadora/#cartao-gerar-milhas">Cartão de Crédito (Gerar Milhas)</a>
         <a href="/calculadora/#valores-de-referencia">Valores de referência do milheiro</a>
       </nav>
     </aside>
@@ -45,7 +46,7 @@
         <header class="hero">
           <div class="eyebrow">Calculadoras</div>
           <h1>Calculadoras</h1>
-          <p class="lead">Contas de custo, transferência, emissão, ALL Accor, hospedagem e cartão de crédito.</p>
+          <p class="lead">Contas de custo, transferência, emissão, ALL Accor, hospedagem, cartão de crédito e cartão para gerar milhas.</p>
         </header>
         <div class="body">
           <section class="section" id="custo-por-milheiro">
@@ -404,7 +405,7 @@
             <div class="kicker">06 · Calculadora</div>
             <h2>Cartão de Crédito</h2>
             <p>Pontos é quantos pontos o cartão dá por cada dólar gasto. O dólar é a cotação usada nessa conta. O Nubank Ultravioleta preenche 1,25% de cashback e 2,2 pontos por dólar. O Nubank Croma
-              preenche 0,8% e 1,4. O Santander Unique preenche 1,20% e 2,2. Sem cartão, informe esses campos. O resultado de pontos é arredondado.</p>
+              preenche 0,8% e 1,4. O Santander Unique preenche 1,20% e 2,2. O Revolut Ultra preenche 0% e 3. Sem cartão, informe esses campos. O resultado de pontos é arredondado.</p>
             <div class="calculator" data-calculator="credit-card">
               <div class="calculator-fields cols-4">
                 <div class="calculator-field span-2">
@@ -414,6 +415,7 @@
                     <option value="nubank-ultravioleta">Nubank Ultravioleta</option>
                     <option value="nubank-croma">Nubank Croma</option>
                     <option value="santander-unique">Santander Unique</option>
+                    <option value="revolut-ultra">Revolut Ultra</option>
                   </select>
                 </div>
               </div>
@@ -456,8 +458,57 @@
             </div>
           </section>
 
+          <section class="section" id="cartao-gerar-milhas">
+            <div class="kicker">07 · Calculadora</div>
+            <h2>Cartão de Crédito (Gerar Milhas)</h2>
+            <p>Aqui a compra serve para gerar pontos. O custo é a taxa da maquininha. Informe a compra, os pontos por dólar, o dólar e a taxa. A lupa busca a última PTAX de venda do dólar. O programa mostra o milheiro de referência para você comparar com o CPM.</p>
+            <div class="calculator" data-calculator="card-miles">
+              <div class="calculator-fields cols-3">
+                <div class="calculator-field">
+                  <label for="gm-purchase">Valor da compra (R$)</label>
+                  <input class="calculator-input" id="gm-purchase" name="purchase" type="text" inputmode="decimal" data-mask="money" autocomplete="off">
+                </div>
+                <div class="calculator-field">
+                  <label for="gm-points">Pontos por dólar</label>
+                  <input class="calculator-input" id="gm-points" name="points-rate" type="text" inputmode="decimal" data-mask="decimal" autocomplete="off">
+                </div>
+                <div class="calculator-field">
+                  <label for="gm-dollar">Dólar (R$)</label>
+                  <div class="fx-lookup">
+                    <input class="calculator-input" id="gm-dollar" name="dollar" type="text" inputmode="decimal" data-mask="money" autocomplete="off">
+                    <button type="button" class="fx-lookup-button" data-fx-lookup data-fx-currency="USD" aria-label="Buscar cotação do dólar">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16.5 20.5 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                  </div>
+                  <p class="field-note fx-quote is-blank" data-fx-note></p>
+                </div>
+              </div>
+              <div class="calculator-fields cols-3">
+                <div class="calculator-field">
+                  <label for="gm-fee">Taxa maquininha (%)</label>
+                  <div class="pct-input">
+                    <input class="calculator-input" id="gm-fee" name="fee-rate" type="text" inputmode="decimal" data-mask="decimal" autocomplete="off">
+                    <span class="pct-suffix" aria-hidden="true">%</span>
+                  </div>
+                </div>
+                <div class="calculator-field">
+                  <label for="gm-program">Programa de pontos</label>
+                  <select class="calculator-input" id="gm-program" name="program" data-program-source>
+                    <option value="">Selecione</option>
+                  </select>
+                  <p class="field-note is-blank" data-reference-note>Milheiro de referência: <strong data-output="reference">—</strong></p>
+                </div>
+              </div>
+              <div class="calculator-results" aria-live="polite">
+                <div class="calculator-result"><span>Taxa da maquininha</span><output data-output="card-fee">—</output></div>
+                <div class="calculator-result"><span>Pontos gerados</span><output data-output="card-points">—</output></div>
+                <div class="calculator-result"><span>Valor do CPM</span><output data-output="card-cpm">—</output></div>
+              </div>
+            </div>
+          </section>
+
           <section class="section" id="valores-de-referencia">
-            <div class="kicker">07 · Referência</div>
+            <div class="kicker">08 · Referência</div>
             <h2>Valores de referência do milheiro</h2>
             <p>Teto de novembro de 2026. É o valor que a calculadora de emissão preenche ao escolher o programa.</p>
             <div class="reference-grid">
